@@ -19,6 +19,9 @@
 			completed: false
 		}
 	];
+
+	let showlist: boolean = true; 
+
 	function handleAddTodo(event) {
 		todos = [...todos, { id: uuid(), title: event.detail.title, completed: false }];
 		console.log(event.detail.title);
@@ -40,12 +43,19 @@
 	}
 </script>
 
-<Todolist
-	bind:todos
-	on:addtodo={handleAddTodo}
-	on:toggletodo={handleToggleTodo}
-	on:removetodo={handleRemoveTodo}
-/>
+<label>
+	<input type="checkbox" bind:checked={showlist} />
+	Show/Hide List 
+</label>
+
+{#if showlist}
+	<Todolist
+		bind:todos
+		on:addtodo={handleAddTodo}
+		on:toggletodo={handleToggleTodo}
+		on:removetodo={handleRemoveTodo}
+	/>
+{/if}
 
 <style>
 	:root {

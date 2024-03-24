@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import Button from '$lib/Button.svelte';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 
 	// prompts exported
 	export let todos: { id: string; title: string; completed: boolean }[] = [];
@@ -10,6 +10,10 @@
 	// variables
 	let inputText: string = '';
 	const dispatch = createEventDispatcher();
+
+    onMount(() => console.log("Mounted"));
+    onDestroy(() => console.log("Destroyed"));
+	
 
 	// functions
 	function handleAddTodo() {
